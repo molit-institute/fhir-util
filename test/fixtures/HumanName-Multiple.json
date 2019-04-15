@@ -1,0 +1,25 @@
+[
+  {
+    "fhir_comments": ["Peter James Chalmers, but called \"Jim\""],
+    "use": "official",
+    "family": "Chalmers",
+    "given": ["Peter", "James"]
+  },
+  {
+    "use": "usual",
+    "given": ["Jim"]
+  },
+  {
+    "use": "maiden",
+    "_use": {
+      "fhir_comments": [
+        "Maiden names apply for anyone whose name changes as a result of marriage - irrespective of gender"
+      ]
+    },
+    "family": "Windsor",
+    "given": ["Peter", "James"],
+    "period": {
+      "end": "2002"
+    }
+  }
+]
