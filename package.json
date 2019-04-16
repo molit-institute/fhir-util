@@ -1,6 +1,6 @@
 {
   "name": "@molit/fhir-util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Util functions for manipulating FHIR resources.",
   "repository": "github:molitinstitute/fhir-util",
   "main": "dist/index.js",
@@ -16,7 +16,6 @@
   ],
   "author": "MOLIT Insitut gGmbH",
   "license": "Apache-2.0",
-  
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
