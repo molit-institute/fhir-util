@@ -2,6 +2,7 @@
   "name": "@molit/fhir-util",
   "version": "1.0.0",
   "description": "Util functions for manipulating FHIR resources.",
+  "repository": "github:molitinstitute/fhir-util",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
