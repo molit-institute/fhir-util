@@ -32,3 +32,6 @@ jsdoc
 .idea
 node_modules
 .gitlab-ci.yml
+
+# Visual Studio Code
+.vscode

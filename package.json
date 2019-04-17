@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "Util functions for manipulating FHIR resources.",
   "repository": "github:molitinstitute/fhir-util",
+  "homepage": "https://molitinstitute.github.io/fhir-util/",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -24,6 +25,7 @@
     "babel-plugin-transform-es2015-modules-simple-commonjs": "^0.3.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "eslint": "^5.15.3",
     "eslint-config-last": "0.0.5",
     "eslint-config-prettier": "^2.10.0",
