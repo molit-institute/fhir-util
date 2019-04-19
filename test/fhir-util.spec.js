@@ -27,6 +27,10 @@ const identifierResultObject = {
   }
 };
 
+const testResource = {
+  identifier: identifier
+};
+
 describe("FHIR Util", () => {
   describe("getStringFromHumanName(humanName)", () => {
     it("should return empty string if either parameter is null or undefined", () => {
@@ -37,7 +41,7 @@ describe("FHIR Util", () => {
         "Maxi Musterfrau"
       );
     });
-    it("should return the value of given and family if not text is present", () => {
+    it("should return the value of given and family if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText)).toEqual(
         "Peter James Chalmers"
       );
@@ -57,6 +61,50 @@ describe("FHIR Util", () => {
           "urn:oid:1.2.36.146.595.217.0.1"
         )
       ).toMatchObject(identifierResultObject);
+    });
+  });
+
+  describe("getIdentifierValueByIdentifierString(identifierString)", () => {
+    it("should return the correct value", () => {
+      expect(
+        fhirUtil.getIdentifierValueByIdentifierString(
+          "urn:oid:1.2.36.146.595.217.0.1|12345"
+        )
+      ).toEqual("12345");
+    });
+    it("should return null", () => {
+      // eslint-disable-next-line prettier/prettier
+      expect(fhirUtil.getIdentifierValueByIdentifierString(null)).toBeNull;
+    });
+  });
+
+  describe("getIdentifierValueBySystem(identifiers, system)", () => {
+    it("should return the correct value", () => {
+      expect(
+        fhirUtil.getIdentifierValueBySystem(
+          identifier,
+          "urn:oid:1.2.36.146.595.217.0.1"
+        )
+      ).toEqual("12345");
+    });
+    it("should return null", () => {
+      // eslint-disable-next-line prettier/prettier
+      expect(fhirUtil.getIdentifierValueBySystem(identifier,null)).toBeNull;
+    });
+  });
+
+  describe("getIdentifierByResourceAndSystem(resource, system)", () => {
+    it("should return the first correct identifier", () => {
+      expect(
+        fhirUtil.getIdentifierByResourceAndSystem(
+          testResource,
+          "urn:oid:1.2.36.146.595.217.0.1"
+        )
+      ).toMatchObject(identifierResultObject);
+    });
+    it("should return null", () => {
+      // eslint-disable-next-line prettier/prettier
+      expect(fhirUtil.getIdentifierByResourceAndSystem(identifier,null)).toBeNull;
     });
   });
 });
