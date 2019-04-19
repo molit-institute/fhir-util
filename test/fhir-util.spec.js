@@ -73,7 +73,6 @@ describe("FHIR Util", () => {
       ).toEqual("12345");
     });
     it("should return null", () => {
-      // eslint-disable-next-line prettier/prettier
       expect(fhirUtil.getIdentifierValueByIdentifierString(null)).toBeNull;
     });
   });
@@ -88,8 +87,7 @@ describe("FHIR Util", () => {
       ).toEqual("12345");
     });
     it("should return null", () => {
-      // eslint-disable-next-line prettier/prettier
-      expect(fhirUtil.getIdentifierValueBySystem(identifier,null)).toBeNull;
+      expect(fhirUtil.getIdentifierValueBySystem(identifier, null)).toBeNull;
     });
   });
 
@@ -103,8 +101,8 @@ describe("FHIR Util", () => {
       ).toMatchObject(identifierResultObject);
     });
     it("should return null", () => {
-      // eslint-disable-next-line prettier/prettier
-      expect(fhirUtil.getIdentifierByResourceAndSystem(identifier,null)).toBeNull;
+      expect(fhirUtil.getIdentifierByResourceAndSystem(identifier, null))
+        .toBeNull;
     });
   });
 });
