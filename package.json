@@ -1,6 +1,6 @@
 {
   "name": "@molit/fhir-util",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Util functions for manipulating FHIR resources.",
   "repository": "github:molitinstitute/fhir-util",
   "homepage": "https://molitinstitute.github.io/fhir-util/",
