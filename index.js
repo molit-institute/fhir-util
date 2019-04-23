@@ -56,7 +56,7 @@ export function getIdentifierBySystem(identifier, system) {
 }
 
 /**
- * Returns the value as String of an identifier String inthe format system|value. Returns "" if any of the parameters is null or undefined.
+ * Returns the value as String of an identifier String inthe format system|value. Returns null if any of the parameters is null or undefined.
  *
  * @param {String} identifierString
  */

@@ -1,4 +1,4 @@
-# FHIR Util
+## FHIR Util
 
 [![Build Status](https://travis-ci.org/molitinstitute/fhir-util.svg?branch=master)](https://travis-ci.org/molitinstitute/fhir-util)
 [![Coverage Status](https://coveralls.io/repos/github/molitinstitute/fhir-util/badge.svg?branch=master)](https://coveralls.io/github/molitinstitute/fhir-util?branch=master)
@@ -7,7 +7,7 @@
 
 This is a utility library to handle FHIR resources.
 
-## Installation
+### Installation
 
 Install like a normal npm dependency.
 
@@ -15,7 +15,7 @@ Install like a normal npm dependency.
 npm i @molit/fhir-util
 ```
 
-## Usage
+### Usage
 
 Import the library and use the functions of the library.
 
