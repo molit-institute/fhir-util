@@ -1,5 +1,6 @@
 import * as fhirUtil from "../index";
 
+import humanNameEmpty from "./fixtures/HumanName-Empty.json";
 import humanNameText from "./fixtures/HumanName-Text.json";
 import humanNameNoText from "./fixtures/HumanName-NoText.json";
 import humanNameMultiple from "./fixtures/HumanName-Multiple.json";
@@ -35,6 +36,9 @@ describe("FHIR Util", () => {
   describe("getStringFromHumanName(humanName)", () => {
     it("should return empty string if either parameter is null or undefined", () => {
       expect(fhirUtil.getStringFromHumanName()).toEqual("");
+    });
+    it("should return empty string if either parameter is empty", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNameEmpty)).toEqual("");
     });
     it("should return the value of the text field if present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameText)).toEqual(
