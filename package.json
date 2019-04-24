@@ -1,7 +1,7 @@
 {
   "name": "@molit/fhir-util",
   "version": "1.0.6",
-  "description": "Util functions for manipulating FHIR resources.",
+  "description": "Util functions for manipulating FHIR resources",
   "repository": "github:molitinstitute/fhir-util",
   "homepage": "https://molitinstitute.github.io/fhir-util/",
   "main": "dist/index.js",
@@ -17,20 +17,19 @@
   ],
   "author": "MOLIT Institut gGmbH",
   "license": "Apache-2.0",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3"
+  },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
-    "babel-jest": "^23.6.0",
-    "babel-plugin-transform-es2015-modules-simple-commonjs": "^0.3.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
-    "eslint": "^5.15.3",
-    "eslint-config-last": "0.0.5",
-    "eslint-config-prettier": "^2.10.0",
-    "eslint-plugin-prettier": "^2.7.0",
-    "jest": "^23.6.0",
-    "prettier": "^1.16.4"
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.7.1",
+    "prettier": "^1.17.0"
   }
 }
