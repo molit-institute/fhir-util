@@ -35,4 +35,4 @@ let name = getStringFromHumanName(patient.name);
 
 ### Documentation
 
-See full documentation here: https://molitinstitute.github.io/fhir-util/
+See full documentation here: https://docs.molit.eu/fhir-util/
