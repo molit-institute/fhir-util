@@ -25,7 +25,7 @@ import * as fhirUtil from "@molit/fhir-util";
 let name = fhirUtil.getStringFromHumanName(patient.name);
 ```
 
-Tree shakging is also supported. 🌲
+Tree shaking is also supported. 🌲
 
 ```js
 import { getStringFromHumanName } from "@molit/fhir-util";
