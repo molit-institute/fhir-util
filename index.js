@@ -95,3 +95,49 @@ export function getIdentifierByResourceAndSystem(resource, system) {
   }
   return getIdentifierBySystem(resource.identifier, system);
 }
+
+/**
+ * Returns the value that is annotated with the given loinc code from the given Observation components
+ * complying to the obs-variant profile (http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/obs-variant).
+ *
+ * @param {Array} components - the components from the obs-variant
+ * @param {String} loincCode - the loinc code
+ * @returns - the value or undefined, if the loinc code could not be found within the components
+ */
+export function getValueByLoincCode(components, loincCode) {
+  if (!components || !components.length) {
+    return undefined;
+  }
+
+  let component = components.find(component => {
+    if (
+      !component ||
+      !component.code ||
+      !component.code.coding ||
+      !component.code.coding.length
+    ) {
+      return undefined;
+    }
+    let code = component.code.coding.find(
+      code => code.system === "http://loinc.org"
+    );
+    if (!code) {
+      return undefined;
+    }
+    return code.code === loincCode;
+  });
+
+  if (!component) {
+    return undefined;
+  }
+
+  if (
+    component.valueCodeableConcept &&
+    component.valueCodeableConcept.coding &&
+    component.valueCodeableConcept.coding.length
+  ) {
+    return component.valueCodeableConcept.coding[0].display;
+  } else if (component.valueQuantity) {
+    return component.valueQuantity.value;
+  }
+}
