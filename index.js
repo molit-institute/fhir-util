@@ -119,7 +119,10 @@ export function getValueByLoincCode(components, loincCode) {
       return undefined;
     }
     let code = component.code.coding.find(
-      code => code.system === "http://loinc.org"
+      code =>
+        code.system === "http://loinc.org" ||
+        code.system ===
+          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD"
     );
     if (!code) {
       return undefined;
