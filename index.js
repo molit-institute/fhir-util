@@ -142,5 +142,13 @@ export function getValueByLoincCode(components, loincCode) {
     return component.valueCodeableConcept.coding[0].display;
   } else if (component.valueQuantity) {
     return component.valueQuantity.value;
+  } else if (
+    component.valueRange &&
+    component.valueRange.low &&
+    component.valueRange.high
+  ) {
+    return (
+      component.valueRange.low.value + "-" + component.valueRange.high.value
+    );
   }
 }
