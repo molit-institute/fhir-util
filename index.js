@@ -116,7 +116,7 @@ export function getValueByLoincCode(components, loincCode) {
       !component.code.coding ||
       !component.code.coding.length
     ) {
-      return undefined;
+      return false;
     }
     let code = component.code.coding.find(
       code =>
@@ -125,7 +125,7 @@ export function getValueByLoincCode(components, loincCode) {
           "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD"
     );
     if (!code) {
-      return undefined;
+      return false;
     }
     return code.code === loincCode;
   });
@@ -142,13 +142,25 @@ export function getValueByLoincCode(components, loincCode) {
     return component.valueCodeableConcept.coding[0].display;
   } else if (component.valueQuantity) {
     return component.valueQuantity.value;
-  } else if (
-    component.valueRange &&
-    component.valueRange.low &&
-    component.valueRange.high
-  ) {
-    return (
-      component.valueRange.low.value + "-" + component.valueRange.high.value
-    );
+  } else if (component.valueRange) {
+    let value = "";
+
+    if (component.valueRange.low && component.valueRange.low.value) {
+      value += component.valueRange.low.value;
+    } else {
+      value += "unknown";
+    }
+
+    value += "-";
+
+    if (component.valueRange.high && component.valueRange.high.value) {
+      value += component.valueRange.high.value;
+    } else {
+      value += "unknown";
+    }
+
+    return value;
+  } else {
+    return undefined;
   }
 }
