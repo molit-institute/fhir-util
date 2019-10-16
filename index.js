@@ -54,3 +54,72 @@ export function getStringFromHumanName(humanName, switchNameOrder) {
     return "";
   }
 }
+
+/**
+ * Returns the value that is annotated with the given loinc code from the given Observation components
+ * complying to the obs-variant profile (http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/obs-variant).
+ *
+ * @param {Array} components - the components from the obs-variant
+ * @param {String} loincCode - the loinc code
+ * @returns - the value or undefined, if the loinc code could not be found within the components
+ */
+export function getValueByLoincCode(components, loincCode) {
+  if (!components || !components.length) {
+    return undefined;
+  }
+
+  let component = components.find(component => {
+    if (
+      !component ||
+      !component.code ||
+      !component.code.coding ||
+      !component.code.coding.length
+    ) {
+      return false;
+    }
+    let code = component.code.coding.find(
+      code =>
+        code.system === "http://loinc.org" ||
+        code.system ===
+          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD"
+    );
+    if (!code) {
+      return false;
+    }
+    return code.code === loincCode;
+  });
+
+  if (!component) {
+    return undefined;
+  }
+
+  if (
+    component.valueCodeableConcept &&
+    component.valueCodeableConcept.coding &&
+    component.valueCodeableConcept.coding.length
+  ) {
+    return component.valueCodeableConcept.coding[0].display;
+  } else if (component.valueQuantity) {
+    return component.valueQuantity.value;
+  } else if (component.valueRange) {
+    let value = "";
+
+    if (component.valueRange.low && component.valueRange.low.value) {
+      value += component.valueRange.low.value;
+    } else {
+      value += "unknown";
+    }
+
+    value += "-";
+
+    if (component.valueRange.high && component.valueRange.high.value) {
+      value += component.valueRange.high.value;
+    } else {
+      value += "unknown";
+    }
+
+    return value;
+  } else {
+    return undefined;
+  }
+}
