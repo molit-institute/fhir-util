@@ -1,4 +1,4 @@
-import * as fhirUtil from "../index";
+import * as fhirUtil from "./../index";
 
 import humanNameEmpty from "./fixtures/HumanName-Empty.json";
 import humanNameText from "./fixtures/HumanName-Text.json";
@@ -25,9 +25,14 @@ describe("FHIR Util", () => {
         "Peter James Chalmers"
       );
     });
-    it("should return the value of given and family if no text is present", () => {
+    it("should return the value of family and given if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, true)).toEqual(
         "Chalmers Peter James"
+      );
+    });
+    it("should return the value of given and family if no text is present", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
+        "Peter James Chalmers"
       );
     });
     it("should return the value of text if no given or family is present", () => {
