@@ -1,16 +1,15 @@
-import * as fhirUtil from "../index";
+import * as fhirUtil from "./../index";
 
 import humanNameEmpty from "./fixtures/HumanName-Empty.json";
 import humanNameText from "./fixtures/HumanName-Text.json";
 import humanNameNoText from "./fixtures/HumanName-NoText.json";
 import humanNameMultiple from "./fixtures/HumanName-Multiple.json";
-
-import identifier from "./fixtures/Identifier.json";
+import humanNameNoGivenOrFamily from "./fixtures/HumanName-NoGivenOrFamily.json";
 
 import observationVariant from "./fixtures/Observation-variant.json";
+import identifier from "./fixtures/Identifier.json";
 
 const identifierResultObject = {
-  fhir_comments: ["MRN assigned by ACME healthcare on 6-May 2001"],
   use: "usual",
   type: {
     coding: [
@@ -33,36 +32,51 @@ const identifierResultObject = {
 const testResource = {
   identifier: identifier
 };
-
 describe("FHIR Util", () => {
   describe("getStringFromHumanName(humanName)", () => {
     it("should return empty string if either parameter is null or undefined", () => {
       expect(fhirUtil.getStringFromHumanName()).toEqual("");
     });
 
-    it("should return empty string if either parameter is empty", () => {
-      expect(fhirUtil.getStringFromHumanName(humanNameEmpty)).toEqual("");
-    });
-
     it("should return the value of the text field if present", () => {
-      expect(fhirUtil.getStringFromHumanName(humanNameText)).toEqual(
+      expect(fhirUtil.getStringFromHumanName(humanNameText, false)).toEqual(
         "Maxi Musterfrau"
       );
     });
 
     it("should return the value of given and family if no text is present", () => {
-      expect(fhirUtil.getStringFromHumanName(humanNameNoText)).toEqual(
+      expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
         "Peter James Chalmers"
       );
     });
-
+    it("should return the value of family and given if no text is present", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNameNoText, true)).toEqual(
+        "Chalmers Peter James"
+      );
+    });
+    it("should return the value of given and family if no text is present", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
+        "Peter James Chalmers"
+      );
+    });
+    it("should return the value of text if no given or family is present", () => {
+      expect(
+        fhirUtil.getStringFromHumanName(humanNameNoGivenOrFamily, false)
+      ).toEqual("Peter James Chalmers");
+    });
+    it("should return '' if nothing is present", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNameEmpty, false)).toEqual(
+        ""
+      );
+    });
     it("should return a String with comma-separated names if multiple names are present", () => {
-      expect(fhirUtil.getStringFromHumanName(humanNameMultiple)).toEqual(
+      expect(fhirUtil.getStringFromHumanName(humanNameMultiple, false)).toEqual(
         "Peter James Chalmers, Jim, Peter James Windsor"
       );
     });
   });
 
+  // IDENTIFIER
   describe("getIdentifierBySystem(identifier, system)", () => {
     it("should return the correct identifier", () => {
       expect(
@@ -82,7 +96,6 @@ describe("FHIR Util", () => {
         )
       ).toEqual("12345");
     });
-
     it("should return null", () => {
       expect(fhirUtil.getIdentifierValueByIdentifierString(null)).toBeNull;
     });
@@ -97,7 +110,6 @@ describe("FHIR Util", () => {
         )
       ).toEqual("12345");
     });
-
     it("should return null", () => {
       expect(fhirUtil.getIdentifierValueBySystem(identifier, null)).toBeNull;
     });
@@ -112,13 +124,13 @@ describe("FHIR Util", () => {
         )
       ).toMatchObject(identifierResultObject);
     });
-
     it("should return null", () => {
       expect(fhirUtil.getIdentifierByResourceAndSystem(identifier, null))
         .toBeNull;
     });
   });
 
+  //LOINC
   describe("getValueByLoincCode(components, loincCode)", () => {
     it("should return the correct value of the codeable concept", () => {
       expect(
