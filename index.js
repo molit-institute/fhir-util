@@ -8,17 +8,17 @@
  * fhirUtil.getStringFromHumanName(patient.name);
  *
  * @param {Object[]} humanName - the HumanNames Array
- * @param {Boolean} switchNameOrder
+ * @param {Boolean} lastNameFirst - if true will put the Family-Name first
  * @return {String} the human name
  */
-export function getStringFromHumanName(humanName, switchNameOrder) {
+export function getStringFromHumanName(humanName, lastNameFirst) {
   if (!humanName || !humanName[0]) {
     return "";
   }
 
   let givenFamilyName = "";
   humanName.forEach((name, index, array) => {
-    if (switchNameOrder) {
+    if (lastNameFirst) {
       if (name.family) {
         givenFamilyName += name.family + " ";
       }
