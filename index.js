@@ -17,25 +17,29 @@ export function getStringFromHumanName(humanName, lastNameFirst) {
   }
 
   let givenFamilyName = "";
-  humanName.forEach((name, index, array) => {
-    if (lastNameFirst) {
-      if (name.family) {
-        givenFamilyName += name.family + " ";
+  humanName.forEach(name => {
+    if (name.use === "official") {
+      if (lastNameFirst) {
+        if (name.prefix) {
+          givenFamilyName += name.prefix + " ";
+        }
+        if (name.family) {
+          givenFamilyName += name.family + ", ";
+        }
+        if (name.given) {
+          givenFamilyName += name.given.join(" ");
+        }
+      } else {
+        if (name.prefix) {
+          givenFamilyName += name.prefix + " ";
+        }
+        if (name.given) {
+          givenFamilyName += name.given.join(" ");
+        }
+        if (name.family) {
+          givenFamilyName += " " + name.family;
+        }
       }
-      if (name.given) {
-        givenFamilyName += name.given.join(" ");
-      }
-    } else {
-      if (name.given) {
-        givenFamilyName += name.given.join(" ");
-      }
-      if (name.family) {
-        givenFamilyName += " " + name.family;
-      }
-    }
-
-    if (index < array.length - 1) {
-      givenFamilyName += ", ";
     }
   });
 
