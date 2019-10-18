@@ -1,6 +1,7 @@
 [
   {
     "use": "official",
+    "prefix": "Dr.",
     "family": "Chalmers",
     "given": ["Peter", "James"]
   }
