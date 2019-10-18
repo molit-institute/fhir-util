@@ -5,7 +5,7 @@ import humanNameText from "./fixtures/HumanName-Text.json";
 import humanNameNoText from "./fixtures/HumanName-NoText.json";
 import humanNameMultiple from "./fixtures/HumanName-Multiple.json";
 import humanNameNoGivenOrFamily from "./fixtures/HumanName-NoGivenOrFamily.json";
-
+import humanNamePrefix from "./fixtures/HumanName-Prefix.json";
 import observationVariant from "./fixtures/Observation-variant.json";
 import identifier from "./fixtures/Identifier.json";
 
@@ -39,24 +39,39 @@ describe("FHIR Util", () => {
     });
 
     it("should return the value of the text field if present", () => {
-      expect(fhirUtil.getStringFromHumanName(humanNameText, false)).toEqual(
+      expect(fhirUtil.getStringFromHumanName(humanNameText, true)).toEqual(
         "Maxi Musterfrau"
       );
     });
 
     it("should return the value of given and family if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
-        "Peter James Chalmers"
+        "Peter James, Chalmers"
       );
     });
     it("should return the value of family and given if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, true)).toEqual(
-        "Chalmers Peter James"
+        "Chalmers, Peter James"
+      );
+    });
+    it("should return the value of prefix, family and given", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNamePrefix, true)).toEqual(
+        "Dr. Chalmers, Peter James"
+      );
+    });
+    it("should return the value of prefix, given and family", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNamePrefix, false)).toEqual(
+        "Dr. Peter James, Chalmers"
+      );
+    });
+    it("should return the value of prefix, given and family", () => {
+      expect(fhirUtil.getStringFromHumanName(humanNamePrefix)).toEqual(
+        "Dr. Peter James, Chalmers"
       );
     });
     it("should return the value of given and family if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
-        "Peter James Chalmers"
+        "Peter James, Chalmers"
       );
     });
     it("should return the value of text if no given or family is present", () => {
@@ -69,9 +84,9 @@ describe("FHIR Util", () => {
         ""
       );
     });
-    it("should return a String with comma-separated names if multiple names are present", () => {
+    it("should return a String with comma-separated official-name if multiple names are present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameMultiple, false)).toEqual(
-        "Peter James Chalmers, Jim, Peter James Windsor"
+        "Peter James, Chalmers"
       );
     });
   });
