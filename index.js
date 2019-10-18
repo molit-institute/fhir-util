@@ -37,7 +37,7 @@ export function getStringFromHumanName(humanName, lastNameFirst) {
           givenFamilyName += name.given.join(" ");
         }
         if (name.family) {
-          givenFamilyName += ", " + name.family;
+          givenFamilyName += " " + name.family;
         }
       }
     }

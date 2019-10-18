@@ -46,7 +46,7 @@ describe("FHIR Util", () => {
 
     it("should return the value of given and family if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
-        "Peter James, Chalmers"
+        "Peter James Chalmers"
       );
     });
     it("should return the value of family and given if no text is present", () => {
@@ -61,17 +61,17 @@ describe("FHIR Util", () => {
     });
     it("should return the value of prefix, given and family", () => {
       expect(fhirUtil.getStringFromHumanName(humanNamePrefix, false)).toEqual(
-        "Dr. Peter James, Chalmers"
+        "Dr. Peter James Chalmers"
       );
     });
     it("should return the value of prefix, given and family", () => {
       expect(fhirUtil.getStringFromHumanName(humanNamePrefix)).toEqual(
-        "Dr. Peter James, Chalmers"
+        "Dr. Peter James Chalmers"
       );
     });
     it("should return the value of given and family if no text is present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameNoText, false)).toEqual(
-        "Peter James, Chalmers"
+        "Peter James Chalmers"
       );
     });
     it("should return the value of text if no given or family is present", () => {
@@ -86,7 +86,7 @@ describe("FHIR Util", () => {
     });
     it("should return a String with comma-separated official-name if multiple names are present", () => {
       expect(fhirUtil.getStringFromHumanName(humanNameMultiple, false)).toEqual(
-        "Peter James, Chalmers"
+        "Peter James Chalmers"
       );
     });
   });
