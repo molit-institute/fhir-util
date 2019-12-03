@@ -5,7 +5,7 @@
 ![npm](https://img.shields.io/npm/v/@molit/fhir-util.svg)
 ![NPM](https://img.shields.io/npm/l/@molit/fhir-util.svg)
 
-This is a utility library to handle FHIR resources.
+This is a small utility library to handle FHIR resources.
 
 ### Installation
 
