@@ -85,7 +85,9 @@ export function getValueByLoincCode(components, loincCode) {
       code =>
         code.system === "http://loinc.org" ||
         code.system ===
-          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD"
+          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD" ||
+        code.system ===
+          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes"
     );
     if (!code) {
       return false;
