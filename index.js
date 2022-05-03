@@ -73,21 +73,11 @@ export function getValueByLoincCode(components, loincCode) {
   }
 
   let component = components.find(component => {
-    if (
-      !component ||
-      !component.code ||
-      !component.code.coding ||
-      !component.code.coding.length
-    ) {
+    if (!component || !component.code || !component.code.coding || !component.code.coding.length) {
       return false;
     }
     let code = component.code.coding.find(
-      code =>
-        code.system === "http://loinc.org" ||
-        code.system ===
-          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD" ||
-        code.system ===
-          "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes"
+      code => code.system === "http://loinc.org" || code.system === "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/LOINC-TBD" || code.system === "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes"
     );
     if (!code) {
       return false;
@@ -99,11 +89,7 @@ export function getValueByLoincCode(components, loincCode) {
     return undefined;
   }
 
-  if (
-    component.valueCodeableConcept &&
-    component.valueCodeableConcept.coding &&
-    component.valueCodeableConcept.coding.length
-  ) {
+  if (component.valueCodeableConcept && component.valueCodeableConcept.coding && component.valueCodeableConcept.coding.length) {
     return component.valueCodeableConcept.coding[0].display;
   } else if (component.valueQuantity) {
     return component.valueQuantity.value;

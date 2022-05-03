@@ -5,12 +5,15 @@
   "repository": "github:molitinstitute/fhir-util",
   "homepage": "https://docs.molit.eu/fhir-util/",
   "main": "dist/index.js",
+  "module": "index.js",
+  "unpkg": "dist/fhir-util.umd.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint ./index.js test",
+    "lint:fix": "eslint ./index.js test --fix",
     "doc": "jsdoc index.js README.md -d ./jsdoc/",
-    "doc:localJsdoc": "./node_modules/.bin/jsdoc index.js README.md -d ./jsdoc/",
-    "build": "babel index.js --out-dir dist"
+    "build": "babel index.js --out-dir dist",
+    "build:webpack": "webpack"
   },
   "keywords": [
     "FHIR",
@@ -19,18 +22,21 @@
   ],
   "author": "MOLIT Institut gGmbH",
   "license": "Apache-2.0",
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
-    "chai": "^4.2.0",
-    "eslint": "^7.18.0",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "chai": "^4.3.6",
+    "core-js": "^3.22.4",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1"
+    "eslint-plugin-prettier": "^3.4.1",
+    "jest": "^27.5.1",
+    "jsdoc": "^3.6.10",
+    "prettier": "^2.6.2",
+    "regenerator-runtime": "^0.13.9",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   }
 }
