@@ -35,6 +35,10 @@ import { getStringFromHumanName } from "@molit/fhir-util";
 let name = getStringFromHumanName(patient.name);
 ```
 
+### Browser Example
+
+An example for browser usage can be seen here: https://jsfiddle.net/molitinstitut/k5edr4z3/latest/
+
 ### Documentation
 
 See full documentation here: https://docs.molit.eu/fhir-util/
